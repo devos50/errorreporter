@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap3',
     'errorreporter',
     # 'debug_toolbar',
     # 'template_timings_panel'
