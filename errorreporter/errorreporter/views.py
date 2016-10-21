@@ -1,12 +1,33 @@
+import datetime
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.db.models import Count
 from errorreporter.models import CrashReport
 from django.shortcuts import redirect
 import time
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
     return redirect('/overview_crashreport_daily')
+
+
+@csrf_exempt
+def report(request):
+    required_keys = ['version', 'machine', 'os', 'timestamp', 'sysinfo', 'comments', 'stack']
+    keys_dict = {}
+    for key in required_keys:
+        if key not in request.POST:
+            return HttpResponseBadRequest('missing %s key' % key)
+        keys_dict[key] = request.POST[key]
+
+    print int(keys_dict['timestamp'])
+    date_report = datetime.datetime.fromtimestamp(int(keys_dict['timestamp'])).strftime('%Y-%m-%d')
+
+    crash_report = CrashReport(date=date_report, **keys_dict)
+    crash_report.save()
+
+    return HttpResponse('')
 
 
 def overview_crashreport_version(request):

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^crashreport_version/(?P<version>.+)$', views.crashreport_version, name='crashreport_version'),
     url(r'^stacktrace_graphs/(?P<stack_id>.+)$', views.stacktrace_graphs, name='stacktrace_graphs'),
     url(r'^stacktrace/(?P<stack_id>.+)$', views.stacktrace, name='stacktrace'),
+    url(r'^report$', views.report, name='report'),
 ]
