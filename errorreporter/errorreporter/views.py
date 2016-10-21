@@ -5,24 +5,26 @@ from django.shortcuts import redirect
 import time
 
 
-# Create your views here.
 def index(request):
-    return redirect('overview_daily')
+    return redirect('/overview_crashreport_daily')
 
 
 def overview_crashreport_version(request):
     crashreports = CrashReport.objects.values('version').annotate(cnt=Count('version')).order_by('-version')
     context = {'crashreports': crashreports}
-    return render(request, 'errorreporter/overview_crashreport_version.html', context)
+    return render(request, 'errorreporter/overview_version.html', context)
 
 
 def overview_crashreport_daily(request):
     crashreports = CrashReport.objects.values('date').annotate(cnt=Count('date')).order_by('-date')
     context = {'crashreports': crashreports}
-    return render(request, 'errorreporter/overview_crashreport_daily.html', context)
+    return render(request, 'errorreporter/overview_daily.html', context)
 
 
 def crashreport_daily(request, date):
+    """
+    Merge the stack reports and return the page that displays the (aggregated) stacktraces for each day.
+    """
     crashreports = CrashReport.objects.filter(date=date)
     comments = compact_comments(crashreports)
     objects = CrashReport.objects.values('stack').filter(date=date)

@@ -6,3 +6,7 @@ iframe#reports_iframe {
 	width: 100%; 
 	height: 90%;
 }
+
+.tr-clickable {
+	cursor: pointer;
+}

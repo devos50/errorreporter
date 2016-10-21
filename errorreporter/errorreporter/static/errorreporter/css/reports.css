@@ -1,7 +1,3 @@
-body {
-	background-color: #F2F2F2;
-}
-
 table.crashreport, div.crashreport_aggr {
 	width: 1000px;
 	border-width: 1px;
@@ -10,22 +6,16 @@ table.crashreport, div.crashreport_aggr {
 	margin-bottom: 20px;
 }
 
-
-
 table.crashreport th {
 	width: 200px;
-	
 }
+
 table.crashreport_aggr th {
 	width: 200px;
 	background-color: #D8D8D8;
 }
 
-td, div, dd {
-	font-size: 12px;
-}
-
-div.report_header{
+div.report_header {
 	width: 100%;
 	background-color: #D8D8D8;
 	text-align: center;
@@ -33,8 +23,7 @@ div.report_header{
 	
 }
 
-div.report_contents
-{
+div.report_contents {
 	background-color: #FFFFFF;
 	padding: 3px;
 }

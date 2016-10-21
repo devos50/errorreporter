@@ -1,0 +1,24 @@
+{% include "errorreporter/header.html" %}
+
+<div class="container">
+	<h1 id="tribler-reporter-header">Overview of reported stack traces per version</h1>
+
+	<div class="page-tables">
+    	<div class="table-responsive">
+            <table cellpadding="0" cellspacing="0" border="0" id="reports-version-table" width="100%" class="table table-striped">
+            	<thead>
+            		<th>Version</th>
+            		<th># reports</th>
+				</thead>
+				<tbody>
+					{% for c in crashreports %}
+					<tr class="tr-clickable" onclick="window.location='/crashreport_version/{{ c.version }}'"><td>{{ c.version }}</td><td>{{ c.cnt }}</td></tr>
+					{% endfor %}
+				</tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% include "errorreporter/footer.html" %}

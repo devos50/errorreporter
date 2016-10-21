@@ -22,8 +22,6 @@ SECRET_KEY = 'fvv3!rhb)2s0mg1@_vb%aw!rzvfq+&z*^@s+=0u-l&0kukg=hc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -36,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
     'errorreporter',
     # 'debug_toolbar',
     # 'template_timings_panel'
@@ -116,4 +115,3 @@ USE_TZ = True
 STATIC_ROOT = '/var/www/public_html/static/errorreporter/'
 STATIC_URL = '/static/errorreporter/'
 FLAMEGRAPH_PATH = '/var/www/errorreporter/errorreporter/flamegraph/'
-
