@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=bug_reporter
 Group=bug_reporter
-WorkingDirectory=/var/lib/bug_reporter/errorreporter
-ExecStart=/var/lib/bug_reporter/.local/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 project.wsgi
+WorkingDirectory=/var/lib/bug_reporter/errorreporter/errorreporter
+ExecStart=/var/lib/bug_reporter/.local/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 errorreporter.wsgi
 
 [Install]
 WantedBy=multi-user.target
