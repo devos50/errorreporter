@@ -1,0 +1,12 @@
+[Unit]
+Description=Django with Gunicorn
+After=network.target
+
+[Service]
+User=bug_reporter
+Group=bug_reporter
+WorkingDirectory=/var/lib/bug_reporter/errorreporter
+ExecStart=/var/lib/bug_reporter/.local/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 project.wsgi
+
+[Install]
+WantedBy=multi-user.target
