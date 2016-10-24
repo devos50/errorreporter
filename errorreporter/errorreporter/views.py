@@ -1,4 +1,5 @@
 import datetime
+import json
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.db.models import Count
@@ -27,7 +28,7 @@ def report(request):
     crash_report = CrashReport(date=date_report, **keys_dict)
     crash_report.save()
 
-    return HttpResponse('')
+    return HttpResponse(json.dumps({'sent': True}), content_type="application/json")
 
 
 def overview_crashreport_version(request):
