@@ -1,5 +1,6 @@
 import datetime
 import json
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.db.models import Count
@@ -37,6 +38,7 @@ def overview_crashreport_version(request):
     return render(request, 'errorreporter/overview_version.html', context)
 
 
+@login_required
 def overview_crashreport_daily(request):
     crashreports = CrashReport.objects.values('date').annotate(cnt=Count('date')).order_by('-date')
     context = {'crashreports': crashreports}
