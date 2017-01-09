@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^index$', views.index, name='index'),
     url(r'^login', views.login_page, name='login'),
     url(r'^auth/login', views.perform_login, name='login'),
+    url(r'^auth/logout', views.perform_logout, name='logout'),
     url(r'^overview_crashreport_daily$', views.overview_crashreport_daily, name='overview_daily'),
     url(r'^overview_crashreport_version$', views.overview_crashreport_version, name='overview_version'),
     url(r'^crashreport_daily/(?P<date>\d{4}-\d{2}-\d{2})$', views.crashreport_daily, name='crashreport_daily'),

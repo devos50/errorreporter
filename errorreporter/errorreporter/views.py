@@ -1,6 +1,6 @@
 import datetime
 import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
@@ -24,6 +24,12 @@ def perform_login(request):
     if user is not None:
         login(request, user)
     return redirect('/overview_crashreport_daily')
+
+
+def perform_logout(request):
+    logout(request)
+    return redirect('/overview_crashreport_daily')
+
 
 @csrf_exempt
 def report(request):
