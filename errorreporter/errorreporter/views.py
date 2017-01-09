@@ -1,8 +1,7 @@
 import datetime
 import json
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.db.models import Count
@@ -21,8 +20,9 @@ def login_page(request):
 
 
 def perform_login(request):
-    user = User.objects.create_user('tribler_admin', 'admin@tribler.org', 'qwerty')
-    login(request, user)
+    user = authenticate(username=request.POST.get('username', ''), password=request.POST.get('password', ''))
+    if user is not None:
+        login(request, user)
     return redirect('/overview_crashreport_daily')
 
 @csrf_exempt
