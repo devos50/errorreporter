@@ -1,5 +1,6 @@
 import datetime
 import json
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
@@ -14,9 +15,13 @@ def index(request):
     return redirect('/overview_crashreport_daily')
 
 
-def login(request):
+def login_page(request):
     return render(request, 'errorreporter/login.html')
 
+
+def auth_login(request):
+    login(request, 'tribler_admin')
+    return redirect('/overview_crashreport_daily')
 
 @csrf_exempt
 def report(request):
@@ -36,6 +41,7 @@ def report(request):
     return HttpResponse(json.dumps({'sent': True}), content_type="application/json")
 
 
+@login_required
 def overview_crashreport_version(request):
     crashreports = CrashReport.objects.values('version').annotate(cnt=Count('version')).order_by('-version')
     context = {'crashreports': crashreports}
@@ -49,6 +55,7 @@ def overview_crashreport_daily(request):
     return render(request, 'errorreporter/overview_daily.html', context)
 
 
+@login_required
 def crashreport_daily(request, date):
     """
     Merge the stack reports and return the page that displays the (aggregated) stacktraces for each day.
@@ -82,6 +89,7 @@ def crashreport_daily(request, date):
     return render(request, 'errorreporter/crashreport_aggr.html', context)
 
 
+@login_required
 def crashreport_version(request, version):
     crashreports = CrashReport.objects.filter(version=version)
     comments = compact_comments(crashreports)
@@ -115,6 +123,7 @@ def crashreport_version(request, version):
     return render(request, 'errorreporter/crashreport_aggr.html', context)
 
 
+@login_required
 def stacktrace_graphs(request, stack_id):
     objects = CrashReport.objects.filter(id=stack_id)
     stack = objects.first()
@@ -150,6 +159,7 @@ def stacktrace_graphs(request, stack_id):
     return render(request, 'errorreporter/stacktrace_graphs.html', context)
 
 
+@login_required
 def stacktrace(request, stack_id):
     objects = CrashReport.objects.filter(id=stack_id)
     stack = objects.first()
