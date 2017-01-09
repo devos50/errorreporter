@@ -14,6 +14,10 @@ def index(request):
     return redirect('/overview_crashreport_daily')
 
 
+def login(request):
+    return render(request, 'errorreporter/login.html')
+
+
 @csrf_exempt
 def report(request):
     required_keys = ['version', 'machine', 'os', 'timestamp', 'sysinfo', 'comments', 'stack']

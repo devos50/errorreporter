@@ -22,6 +22,8 @@ SECRET_KEY = 'fvv3!rhb)2s0mg1@_vb%aw!rzvfq+&z*^@s+=0u-l&0kukg=hc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGIN_URL = '/login'
+
 ALLOWED_HOSTS = []
 
 
