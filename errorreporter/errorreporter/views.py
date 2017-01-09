@@ -19,7 +19,7 @@ def login_page(request):
     return render(request, 'errorreporter/login.html')
 
 
-def auth_login(request):
+def perform_login(request):
     login(request, 'tribler_admin')
     return redirect('/overview_crashreport_daily')
 
